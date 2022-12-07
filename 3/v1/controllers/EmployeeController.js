@@ -68,6 +68,13 @@ export default class EmployeeController {
      * @param res the response object
      */
     static addVacationsToEmployee(req, res) {
+        if (req.body.startDate > req.body.endDate) {
+            return res.json({
+                status: 'error',
+                message: 'Start date cannot be greater than end date'
+            })
+        }
+
         EmployeeModel.findById(req.params.id)
             .then(employee => {
                 const employeeId = employee._id;
@@ -98,6 +105,14 @@ export default class EmployeeController {
     static getEmployeesOnVacation(req, res) {
         const periodStart = new Date(parseInt(req.params.startDate));
         const periodEnd = new Date(parseInt(req.params.endDate));
+
+        if (periodStart > periodEnd) {
+            return res.json({
+                status: 'error',
+                message: 'Start date cannot be greater than end date'
+            })
+        }
+
         VacationModel.aggregate([
             { $match: { $and: [{startDate: {$lt: periodEnd}}, {endDate: {$gt: periodStart}}] } },
             { $group: {  _id: '$employee' } }

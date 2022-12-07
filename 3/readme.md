@@ -9,7 +9,7 @@ POST /v1/employees
 ```
 
 Request body:
-```json
+```
 {
   "firstName": String,
   "lastName": String
@@ -17,7 +17,7 @@ Request body:
 ```
 
 Response:
-```json
+```
 {
   "_id": String,
   "firstName": String,
@@ -34,7 +34,7 @@ GET /v1/employees
 ```
 
 Response
-```json
+```
 [
   {
     "_id": String,
@@ -55,7 +55,7 @@ GET /v1/employees/{:id}
 `{:id}` is the ID of the Employee
 
 Response
-```json
+```
 {
   "_id": String,
   "firstName": String,
@@ -90,7 +90,7 @@ POST /v1/employees/{:id}/vacations
 `{:id}` is the ID of the Employee
 
 Request body:
-```json
+```
 {
   "startDate": Timestamp,
   "endDate": Timestamp,
@@ -100,7 +100,7 @@ Request body:
 The timestamps are in milliseconds
 
 Response:
-```json
+```
 {
   "_id": String,
   "startDate": String,
@@ -119,7 +119,7 @@ GET /v1/employees/onVacation/{:startDate}/{:endDate}
 `{:startDate}` and `{:endDate}` are the timestamps of the period in milliseconds
 
 Response:
-```json
+```
 [
   {
     "_id": String,
